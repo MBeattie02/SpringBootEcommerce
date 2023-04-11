@@ -10,7 +10,10 @@ import java.util.NoSuchElementException;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class UserService {
 
     @Autowired
@@ -86,5 +89,9 @@ public class UserService {
         }
 
         userRepo.deleteById(id);
+    }
+
+    public void updateUserEnabledStatus(Integer id, boolean enabled) {
+        userRepo.updateEnabledStatus(id, enabled);
     }
 }
