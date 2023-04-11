@@ -1,7 +1,7 @@
 # Spring Boot E-Commerce Platform
 
 >I am currently working on this project and it is a work in progress. Below are the features that will be implemented within this project.⚒️
-> eCommerce platform built with Java, Spring Boot, Thymeleaf, Bootstrap, JQuery, MySQL database
+>E-Commerce platform built with Java, Spring Boot, Thymeleaf, Bootstrap, JQuery, MySQL database
 
 
 ## Features and Technologies 
