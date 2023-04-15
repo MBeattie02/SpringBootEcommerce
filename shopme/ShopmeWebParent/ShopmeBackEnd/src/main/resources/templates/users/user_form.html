@@ -97,11 +97,7 @@
 
 </div>
 <script type="text/javascript">
-  $(document).ready(function() {
-    $("#buttonCancel").on("click", function() {
-      window.location = "[[@{/users}]]";
-    });
-  });
+  moduleURL = "[[@{/users}]]";
 
   function checkEmailUnique(form) {
     url = "[[@{/users/check_email}]]";
@@ -133,5 +129,6 @@
   }
 
 </script>
+<script th:src="@{/js/common_form.js}"></script>
 </body>
 </html>
