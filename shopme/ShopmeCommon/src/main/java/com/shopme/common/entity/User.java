@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 @Entity
 @Table(name = "users")
 public class User {
@@ -128,4 +129,9 @@ public class User {
             return "User [id=" + id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
                     + ", roles=" + roles + "]";
         }
+
+    @Transient
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }
