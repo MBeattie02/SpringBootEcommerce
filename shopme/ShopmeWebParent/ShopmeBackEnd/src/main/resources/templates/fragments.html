@@ -18,7 +18,7 @@
    th:href="@{'/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 
 <div th:fragment="user_photos" th:remove="tag">
-  <span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
+<!--  <span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>-->
   <td><span class="fas fa-portrait fa-3x icon-silver" style="width: 100px" /></span></td>
 </div>
 
