@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import java.util.Optional;
 
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
@@ -30,6 +31,10 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    public User getByEmail(String email) {
+        return userRepo.getUserByEmail(email);
+    }
 
     public List<User> listAll(){
         return (List<User>) userRepo.findAll(Sort.by("firstName").ascending());
@@ -68,6 +73,24 @@ public class UserService {
             encodePassword(user);
         }
         userRepo.save(user);
+    }
+
+    public User updateAccount(User userInForm) {
+        User userInDB = userRepo.findById(userInForm.getId()).get();
+
+        if (!userInForm.getPassword().isEmpty()) {
+            userInDB.setPassword(userInForm.getPassword());
+            encodePassword(userInDB);
+        }
+
+        if (userInForm.getPhotos() != null) {
+            userInDB.setPhotos(userInForm.getPhotos());
+        }
+
+        userInDB.setFirstName(userInForm.getFirstName());
+        userInDB.setLastName(userInForm.getLastName());
+
+        return userRepo.save(userInDB);
     }
 
     private void encodePassword(User user) {
