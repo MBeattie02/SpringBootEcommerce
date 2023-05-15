@@ -1,20 +1,12 @@
 package com.shopme.admin.category;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
+import com.shopme.common.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.shopme.common.entity.Category;
-
 import javax.transaction.Transactional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -177,5 +169,14 @@ public class CategoryService {
 
     public void updateCategoryEnabledStatus(Integer id, boolean enabled) {
         repo.updateEnabledStatus(id, enabled);
+    }
+
+    public void delete(Integer id) throws CategoryNotFoundException {
+        Long countById = repo.countById(id);
+        if (countById == null || countById == 0) {
+            throw new CategoryNotFoundException("Could not find any category with ID " + id);
+        }
+
+        repo.deleteById(id);
     }
 }
